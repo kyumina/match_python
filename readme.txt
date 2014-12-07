@@ -1,3 +1,2 @@
-性別での分別
-年齢での分別は完了しました。
-マッチングが完成してないので、進捗30%程度です。
+Important file is dmtest.py and match.csv.
+Other file is not important.
