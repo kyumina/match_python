@@ -1,2 +1,2 @@
-Important file is dmtest.py and match.csv.
-Other file is not important.
+dmtest.py is matching main program.
+csvfile is matchdata.
