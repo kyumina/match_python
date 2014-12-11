@@ -23,6 +23,8 @@ bqchoose = []
 gosa = []
 #back gosalist
 bgosalist = []
+#list in dicgosa
+zgosa = []
 
 #csv読み込み
 f = open('match.csv', 'rb')
@@ -101,10 +103,15 @@ for countperm in xrange(len(mainlist)):
 #    print bgosalist
     gosa.append(bgosalist)
 
-print 'gosasasasasasasasasasa'
+print 'gosa'
 print gosa
-#
-#match your human
-#for gcount in xrange(len(gosa)):
-#    for gnucount in xrange(len(gosa[gcount])):
-        
+
+
+#list of dictionary
+for countm in xrange(len(mainlist)):
+    bzgosadic = {}
+    for countgo in xrange(len(gosa[countm])):
+        bzgosadic.update({str(gosa[countm][countgo]):mainlist[countm][0]})
+    zgosa.append(bzgosadic)
+
+print zgosa
