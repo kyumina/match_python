@@ -22,13 +22,14 @@ bqchoose = []
 #gosalist
 gosa = []
 #back gosalist
-bgosa = []
+bgosalist = []
 
 #csv読み込み
 f = open('match.csv', 'rb')
 dataReader = csv.reader(f)
 for row in dataReader:
     initlist.append(row)
+print 'initlist'
 print initlist
 
 #int変換
@@ -44,6 +45,7 @@ for initcount in xrange(len(initlist)):
     mainlist.append(bmainlist)
 #for initcount in xrange(len(initlist)):
 #    mainlist.insert(0,initlist[initcount][0])
+print 'main'
 print mainlist
 
 #性別の分別
@@ -78,31 +80,30 @@ for count in xrange(len(mainlist)):
             else:
                 pass
                 #print bqchoose
-    print bqchoose
+    #print bqchoose
     qchoose.append(bqchoose)
+print "sex&old"
+print qchoose
 
-#print qchoose
+#誤差処理
+for countperm in xrange(len(mainlist)):
+    bgosalist = []
+    for countperso in xrange(len(qchoose[countperm])):
+        siguma = 0
+        for qcount in xrange(len(mainlist[0])-6):
+            siguma += abs(mainlist[countperm][qcount+6] - qchoose[countperm][countperso][qcount+6])
+        bgosalist.append(siguma)
+        #print"bbgogogosa"
+        #print bgosalist
+    if len(qchoose[countperm]) == 0:
+        bgosalist.append('None')
+#    print "bgosa"
+#    print bgosalist
+    gosa.append(bgosalist)
 
-#本命のマッチング
-#for count in xrange(len(mainlist)):
-    for bmcount in xrange(len(qchoose)):
-        bgosa = []
-        if len(qchoose[bmcount]) != 0:
-            for obmcount in xrange(len(qchoose[bmcount])):
-                siguma = 0
-                for qcount in xrange(len(mainlist)-6):
-                    siguma += abs(mainlist[count][qcount+6]- qchoose[bmcount][obmcount][qcount+6])
-            #print 'siguma'
-            #print siguma
-            bgosa.append(siguma)
-
-        else:
-            bgosa.append('None')
-            
-        gosa.append(bgosa)
-
+print 'gosasasasasasasasasasa'
 print gosa
-
+#
 #match your human
 #for gcount in xrange(len(gosa)):
 #    for gnucount in xrange(len(gosa[gcount])):
