@@ -1,11 +1,12 @@
 #coding: utf-8
 
 import csv
+import random
 
 
 #問題点
 #現在、for~in文でまわすことにより、メモリ使用量が多くなっている。
-#二つ目にオブジェクト指向ではない問題が発生している。
+#重複した単純配列が見られるため完成次第改善。
 
 #mainlist=[name,sex,ysex,yold,ynew,old,Q1~Q15]
 #mainlist = [['kyumina',0,1,0,8,15],['RJ',1,0,6,15,9],['unitychan',1,1,3,43,9],['kanten',0,1,0,100,16],['buran',0,1,34,46,15],['man',0,1,0,12,23]]
@@ -25,6 +26,10 @@ gosa = []
 bgosalist = []
 #list in dicgosa
 zgosa = []
+#sort al conpleated gosalist
+sgosa = []
+
+alist = []
 
 #csv読み込み
 f = open('match.csv', 'rb')
@@ -107,11 +112,71 @@ print 'gosa'
 print gosa
 
 
+
 #list of dictionary
 for countm in xrange(len(mainlist)):
+    bzgosalist = []
     bzgosadic = {}
     for countgo in xrange(len(gosa[countm])):
-        bzgosadic.update({str(gosa[countm][countgo]):mainlist[countm][0]})
+        #print countm
+        #print countgo
+        #print gosa[countm][countgo]
+        #print qchoose[countm][countgo][0]
+        if gosa[countm][countgo] == 'None':
+            bzgosalist.append('None')
+        else:
+            bzgosadic.update({gosa[countm][countgo]:qchoose[countm][countgo][0]})
+    zgosa.append(bzgosalist)
     zgosa.append(bzgosadic)
 
+while zgosa.count([]) > 0:
+    zgosa.remove([])
+while zgosa.count({}) > 0:
+    zgosa.remove({})
+
+print "zgosa"
 print zgosa
+
+
+# sort of gosa
+for countm in xrange(len(mainlist)):
+    if gosa[countm][0] == 'None':
+        pass
+        #sgosa.append(['Nooo'])
+    else:
+        gosa[countm].sort()
+        #print gosa[countm]
+
+print 'sgosa'
+print gosa
+
+
+#zgosa gosa照合
+for countm in xrange(len(mainlist)):
+    bcgosa = []
+    if gosa[countm][0] == 'None':
+        if mainlist[countm][2] == 0:
+            bcgosa. append(mainlist[countm][0])
+            bcgosa.append(boylist[random.randint(0,len(boylist))-1][0])
+        elif mainlist[countm][2] == 1:
+            bcgosa.append(mainlist[countm][0])
+            bcgosa.append(girllist[random.randint(0,len(girllist))-1][0])
+    elif gosa[countm][0] == 0:
+        if len(gosa[countm]) == 1:
+            if mainlist[countm][2] == 0:
+                bcgosa. append(mainlist[countm][0])
+                bcgosa.append(boylist[random.randint(0,len(boylist))-1][0])
+            elif mainlist[countm][2] == 1:
+                bcgosa.append(mainlist[countm][0])
+                bcgosa.append(girllist[random.randint(0,len(girllist))-1][0])
+        else:
+            bcgosa.append(mainlist[countm][0])
+            bcgosa.append (zgosa[countm][gosa[countm][1]])
+    else:
+        bcgosa.append(mainlist[countm][0])
+        bcgosa.append(zgosa[countm][gosa[countm][0]])
+        print zgosa[countm][gosa[countm][0]]
+        print gosa[countm][0]
+    alist.append(bcgosa)
+
+print alist
