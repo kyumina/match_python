@@ -2,6 +2,8 @@
 
 import csv
 import random
+import pygame
+from pygame.locals import *
 
 
 #問題点
@@ -180,3 +182,20 @@ for countm in xrange(len(mainlist)):
     alist.append(bcgosa)
 
 print alist
+
+
+#画像生成
+SCREEN_SIZE = (640,480)
+for counta in xrange(len(alist)):
+    fname = alist[counta][0]
+    pygame.init()
+    screen = pygame.display.set_mode(SCREEN_SIZE)
+    pygame.display.set_caption("match_python")
+    myfont = pygame.font.Font("mika.ttf", 80)
+    matchm = myfont.render(alist[counta][0], True, (0,0,0))
+    matcha = myfont.render(alist[counta][1], True, (0,0,0))
+    screen.fill((225,255,255))
+    screen.blit(matchm, (20,50))
+    screen.blit(matcha, (20,150))
+    pygame.image.save(screen, '%s.png'%(fname))
+
