@@ -35,13 +35,15 @@ sgosa = []
 alist = []
 
 #csv読み込み
+print 'Reading csvfile...'
 f = open('1108changed.csv', 'rb')
 dataReader = csv.reader(f)
 for row in dataReader:
     initlist.append(row)
-print 'initlist'
-print initlist
+print 'OK'
+#print initlist
 
+print 'Trans int...'
 #int変換
 #for count in xrange(len(mainlist)):
 #    for snuncount in xrange(len(mainlist[count])):
@@ -59,10 +61,11 @@ for initcount in xrange(len(initlist)):
     mainlist.append(bmainlist)
 #for initcount in xrange(len(initlist)):
 #    mainlist.insert(0,initlist[initcount][0])
-print 'main'
-print mainlist
+print 'OK'
+#print mainlist
 
 
+print 'Divide boy and girl...'
 #性別の分別
 for count in xrange(len(mainlist)):
     if mainlist[count][3] == 'M':
@@ -73,11 +76,12 @@ for count in xrange(len(mainlist)):
         boylist.append(mainlist[count])
         girllist.append(mainlist[count])
 
-print 'boy'
-print boylist
-print 'girl'
-print girllist
+print 'OK'
+#print boylist
+#print 'Divide girl'
+#print girllist
 
+print "Devide sex&old..."
 #年齢での分別
 for count in xrange(len(mainlist)):
     bqchoose = []
@@ -109,9 +113,10 @@ for count in xrange(len(mainlist)):
 
     #print bqchoose
     qchoose.append(bqchoose)
-print "sex&old"
-print qchoose
+print "OK"
+#print qchoose
 
+print 'Outputs error...'
 #誤差処理
 for countperm in xrange(len(mainlist)):
     bgosalist = []
@@ -128,11 +133,11 @@ for countperm in xrange(len(mainlist)):
 #    print bgosalist
     gosa.append(bgosalist)
 
-print 'gosa'
-print gosa
+print 'OK'
+#print gosa
 
 
-
+print "Trans dictionary..."
 #list of dictionary
 for countm in xrange(len(mainlist)):
     bzgosalist = []
@@ -154,10 +159,11 @@ while zgosa.count([]) > 0:
 while zgosa.count({}) > 0:
     zgosa.remove({})
 
-print "zgosa"
-print zgosa
+print "OK"
+#print zgosa
 
 
+print 'Sort of error...'
 # sort of gosa
 for countm in xrange(len(mainlist)):
     if gosa[countm][0] == 'None':
@@ -167,10 +173,11 @@ for countm in xrange(len(mainlist)):
         gosa[countm].sort()
         #print gosa[countm]
 
-print 'sgosa'
-print gosa
+print 'OK'
+#print gosa
 
 
+print 'To collate...'
 #zgosa gosa照合
 for countm in xrange(len(mainlist)):
     bcgosa = []
@@ -215,9 +222,10 @@ for countm in xrange(len(mainlist)):
         #print gosa[countm][0]
     alist.append(bcgosa)
 
-print alist
+print 'OK'
 
 
+print 'Image generation...'
 #画像生成
 SCREEN_SIZE = (640,480)
 for counta in xrange(len(alist)):
@@ -232,4 +240,5 @@ for counta in xrange(len(alist)):
     screen.blit(matchm, (20,50))
     screen.blit(matcha, (20,150))
     pygame.image.save(screen, '%s.png'%(fname))
-
+print 'OK'
+print 'Completion'
