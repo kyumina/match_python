@@ -1,6 +1,7 @@
 #coding: utf-8
 
 import csv
+import os
 import random
 import pygame
 from pygame.locals import *
@@ -36,7 +37,10 @@ alist = []
 
 #csv読み込み
 print 'Reading csvfile...'
-f = open('1108changed.csv', 'rb')
+kscsvfiles = os.listdir('.')
+print kscsvfiles
+inputfile=raw_input("What CSV files?")
+f = open(inputfile, 'rb')
 dataReader = csv.reader(f)
 for row in dataReader:
     initlist.append(row)
@@ -234,11 +238,14 @@ for counta in xrange(len(alist)):
     screen = pygame.display.set_mode(SCREEN_SIZE)
     pygame.display.set_caption("match_python")
     myfont = pygame.font.Font("mika.ttf", 80)
-    matchm = myfont.render(alist[counta][0], True, (0,0,0))
-    matcha = myfont.render(alist[counta][1], True, (0,0,0))
+    idfont = pygame.font.Font("mika.ttf", 40)
+    matchi = idfont.render('ID%s'%(mainlist[counta][0]), True, (0,0,0))
+    matchm = myfont.render(unicode(alist[counta][0], 'utf-8'), True, (0,0,0))
+    matcha = myfont.render(unicode(alist[counta][1], 'utf-8'), True, (0,0,0))
     screen.fill((225,255,255))
-    screen.blit(matchm, (20,50))
-    screen.blit(matcha, (20,150))
+    screen.blit(matchi, (20,10))
+    screen.blit(matchm, (20,60))
+    screen.blit(matcha, (20,160))
     pygame.image.save(screen, '%s.png'%(fname))
 print 'OK'
 print 'Completion'
