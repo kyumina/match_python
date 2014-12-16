@@ -4,6 +4,7 @@ import csv
 import os
 import random
 import pygame
+import sys
 from pygame.locals import *
 
 
@@ -44,9 +45,21 @@ for csvcount in xrange(len(bcsvfiles)):
         csvfiles.append(bcsvfiles[csvcount])
     else:
         pass
+print u"カレントディレクトリ内にあるCSVファイル"
 print ','.join(csvfiles)
-inputfile=raw_input("What CSV files?")
-f = open(inputfile, 'rb')
+while True:
+    inputfile=raw_input("What CSV files? (Ex. hoge.csv)\n*If you want exit, You tipe 'exit'\n")
+    if inputfile == 'exit':
+        sys.exit()
+    else:
+        pass
+    try:
+        f = open(inputfile, 'rb')
+    except IOError:
+        print(u'ファイルを開けません。そのようなファイルは存在しません。')
+        continue
+    break
+
 dataReader = csv.reader(f)
 for row in dataReader:
     initlist.append(row)
