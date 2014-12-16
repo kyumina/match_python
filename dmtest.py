@@ -247,6 +247,10 @@ for countm in xrange(len(mainlist)):
 
 print 'OK'
 
+try:
+    os.mkdir('matchimages')
+except OSError:
+    pass
 
 print 'Image generation...'
 #画像生成
@@ -266,5 +270,6 @@ for counta in xrange(len(alist)):
     screen.blit(matchm, (20,60))
     screen.blit(matcha, (20,160))
     pygame.image.save(screen, '%s.png'%(fname))
+    os.rename('%s.png'%(fname),'matchimages/%s.png'%(fname))
 print 'OK'
 print 'Completion'
