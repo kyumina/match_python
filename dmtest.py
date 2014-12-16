@@ -13,6 +13,7 @@ from pygame.locals import *
 
 #mainlist=[name,sex,ysex,yold,ynew,old,Q1~Q15]
 #mainlist = [['kyumina',0,1,0,8,15],['RJ',1,0,6,15,9],['unitychan',1,1,3,43,9],['kanten',0,1,0,100,16],['buran',0,1,34,46,15],['man',0,1,0,12,23]]
+csvfiles = []
 initlist = []
 mainlist = []
 nomainlist = []
@@ -37,8 +38,13 @@ alist = []
 
 #csv読み込み
 print 'Reading csvfile...'
-kscsvfiles = os.listdir('.')
-print kscsvfiles
+bcsvfiles = os.listdir('.')
+for csvcount in xrange(len(bcsvfiles)):
+    if 'csv' in bcsvfiles[csvcount]:
+        csvfiles.append(bcsvfiles[csvcount])
+    else:
+        pass
+print ','.join(csvfiles)
 inputfile=raw_input("What CSV files?")
 f = open(inputfile, 'rb')
 dataReader = csv.reader(f)
